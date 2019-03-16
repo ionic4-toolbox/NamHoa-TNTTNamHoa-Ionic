@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonList } from '@ionic/angular';
 
-import { ConferenceData } from '../../providers/conference-data';
+import { DataProvider } from '../../providers/data';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,16 +11,13 @@ import { ConferenceData } from '../../providers/conference-data';
 export class DashboardPage implements OnInit {
   @ViewChild('scheduleList') scheduleList: IonList;
 
-  dayIndex = 0;
   queryText = '';
   segment = 'all';
-  excludeTracks: any = [];
   shownSessions: any = 0;
-  groups: any = [];
-  confDate: string;
+  users: any = [];
 
   constructor(
-    public confData: ConferenceData,
+    public dataProv: DataProvider,
   ) { }
 
   ngOnInit() {
@@ -32,9 +29,9 @@ export class DashboardPage implements OnInit {
       this.scheduleList.closeSlidingItems();
     }
 
-    this.confData.getTimeline(this.dayIndex, this.queryText, this.excludeTracks, this.segment).subscribe((data: any) => {
-      this.shownSessions = data.shownSessions;
-      this.groups = data.groups;
+    this.dataProv.getData(this.queryText, this.segment).subscribe((data: any) => {
+      this.shownSessions = data.length;
+      this.users = data;
     });
   }
 }

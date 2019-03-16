@@ -20,21 +20,22 @@
 </ion-header>
 <ion-content>
   <ion-list #scheduleList [hidden]="shownSessions === 0">
-    <ion-item-group *ngFor="let group of groups" [hidden]="group.hide">
+    <ion-item-group>
+      <!-- <ion-item-group *ngFor="let group of users" [hidden]="group.hide"> -->
       <ion-item-divider sticky>
         <ion-label>
-          {{group.time}}
+          Nghĩa Sĩ
         </ion-label>
       </ion-item-divider>
 
-      <ion-item *ngFor="let session of group.sessions" #slidingItem [attr.track]="session.tracks[0] | lowercase" [hidden]="session.hide" routerLink="/app/tabs/schedule/session/{{session.id}}">
+      <ion-item routerLink="" [attr.track]="'nghia-si' | lowercase" *ngFor="let user of users">
         <ion-avatar>
-          <img src="http://res.cloudinary.com/tnttnamhoa/image/upload/d_default.png/c_crop,g_face,h_400,r_max,w_400/c_scale,w_50/v1/profile/taikhoan_id">
+          <img src="http://res.cloudinary.com/tnttnamhoa/image/upload/d_default.png/c_crop,g_face,h_400,r_max,w_400/c_scale,w_50/v1/profile/{{user.id}}">
         </ion-avatar>
         <ion-label>
-          <h3>{{session.name}}</h3>
+          <h3>{{user.ho_va_ten}}</h3>
           <p>
-            {{session.timeStart}} &mdash; {{session.timeEnd}}: {{session.location}}
+            Cấp 2 - Đội 1
           </p>
         </ion-label>
       </ion-item>
