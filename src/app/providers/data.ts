@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
-import { map, filter, tap } from 'rxjs/operators';
+import { of, Observable } from 'rxjs';
+import { map, filter, tap, delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,8 @@ export class DataProvider {
   }
 
   load(): any {
+    // return throwError(response);
+
     if (this.data) {
       return of(this.data);
     } else {
@@ -32,6 +34,7 @@ export class DataProvider {
     segment = 'all'
   ) {
     return this.load().pipe(
+      // delay(3000),
       map((data: any[]) => {
         return data.filter((user: any) => {
           queryText = xoa_dau(queryText).toLowerCase();

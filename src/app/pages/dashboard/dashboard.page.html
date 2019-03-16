@@ -4,24 +4,20 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>TNTT Nam Hòa</ion-title>
-    <!-- <ion-segment [(ngModel)]="segment" (ionChange)="updateSchedule()">
-      <ion-segment-button value="all">
-        Tra Cứu
-      </ion-segment-button>
-      <ion-segment-button value="favorites">
-        Quan Tâm
-      </ion-segment-button>
-    </ion-segment> -->
   </ion-toolbar>
 
   <ion-toolbar>
-    <ion-searchbar [(ngModel)]="queryText" (ionChange)="updateSchedule()" placeholder="Search"></ion-searchbar>
+    <ion-searchbar [(ngModel)]="queryText" (ionChange)="updateSchedule()" placeholder="Tìm kiếm"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-list #scheduleList [hidden]="shownSessions === 0">
+  <!-- Refresh - khởi tạo lại danh sách ban đầu -->
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list #scheduleList [hidden]="userLength === 0">
     <ion-item-group>
-      <!-- <ion-item-group *ngFor="let group of users" [hidden]="group.hide"> -->
       <ion-item-divider sticky>
         <ion-label>
           Nghĩa Sĩ
@@ -41,7 +37,14 @@
       </ion-item>
     </ion-item-group>
   </ion-list>
-  <ion-list-header [hidden]="shownSessions > 0">
+
+  <!-- No data -->
+  <ion-list-header [hidden]="!queryText || userLength > 0">
     Không tìm thấy dữ liệu!
   </ion-list-header>
+
+  <!-- Load more - paging -->
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
