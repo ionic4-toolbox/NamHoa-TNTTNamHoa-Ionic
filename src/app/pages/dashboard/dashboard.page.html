@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Tra Cứu</ion-title>
+    <!-- <ion-segment [(ngModel)]="segment" (ionChange)="updateSchedule()">
+      <ion-segment-button value="all">
+        Tra Cứu
+      </ion-segment-button>
+      <ion-segment-button value="favorites">
+        Quan Tâm
+      </ion-segment-button>
+    </ion-segment> -->
+  </ion-toolbar>
+
+  <ion-toolbar>
+    <ion-searchbar [(ngModel)]="queryText" (ionChange)="updateSchedule()" placeholder="Search"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list #scheduleList [hidden]="shownSessions === 0">
+    <ion-item-group *ngFor="let group of groups" [hidden]="group.hide">
+      <ion-item-divider sticky>
+        <ion-label>
+          {{group.time}}
+        </ion-label>
+      </ion-item-divider>
+
+      <ion-item *ngFor="let session of group.sessions" #slidingItem [attr.track]="session.tracks[0] | lowercase" [hidden]="session.hide" routerLink="/app/tabs/schedule/session/{{session.id}}">
+        <ion-avatar>
+          <img src="http://res.cloudinary.com/tnttnamhoa/image/upload/d_default.png/c_crop,g_face,h_400,r_max,w_400/c_scale,w_50/v1/profile/taikhoan_id">
+        </ion-avatar>
+        <ion-label>
+          <h3>{{session.name}}</h3>
+          <p>
+            {{session.timeStart}} &mdash; {{session.timeEnd}}: {{session.location}}
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+  <ion-list-header [hidden]="shownSessions > 0">
+    Không tìm thấy dữ liệu!
+  </ion-list-header>
+</ion-content>
