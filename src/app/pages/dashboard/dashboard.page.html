@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Tra Cứu</ion-title>
+    <ion-title>TNTT Nam Hòa</ion-title>
     <!-- <ion-segment [(ngModel)]="segment" (ionChange)="updateSchedule()">
       <ion-segment-button value="all">
         Tra Cứu
@@ -28,7 +28,7 @@
         </ion-label>
       </ion-item-divider>
 
-      <ion-item routerLink="" [attr.track]="'nghia-si' | lowercase" *ngFor="let user of users">
+      <ion-item *ngFor="let user of users" routerLink="/tai-khoan/{{user.id}}" [attr.track]="'nghia-si' | lowercase">
         <ion-avatar>
           <img src="http://res.cloudinary.com/tnttnamhoa/image/upload/d_default.png/c_crop,g_face,h_400,r_max,w_400/c_scale,w_50/v1/profile/{{user.id}}">
         </ion-avatar>

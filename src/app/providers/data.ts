@@ -44,7 +44,7 @@ export class DataProvider {
           return false;
         });
       }),
-      tap((data) => console.log(data)),
+      // tap((data) => console.log(data)),
     );
 
     function xoa_dau(str) {
