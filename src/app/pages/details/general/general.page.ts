@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GeneralPage implements OnInit {
   defaultHref = '/trang-chu';
+  // tslint:disable-next-line:max-line-length
+  sourceImage = 'http://res.cloudinary.com/tnttnamhoa/image/upload/d_default.png/c_crop,g_face,h_400,r_max,w_400/c_scale,w_200/v1/profile/HT014'
 
   constructor() { }
 

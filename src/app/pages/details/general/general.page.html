@@ -7,6 +7,19 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="speaker-detail">
+  <div text-center>
+    <img [src]="sourceImage" [alt]="'avar'">
+    <br>
 
+    <ion-button fill="clear" size="small" color="twitter">
+      <ion-icon name="logo-twitter" slot="icon-only"></ion-icon>
+    </ion-button>
+    <ion-button fill="clear" size="small" color="github">
+      <ion-icon name="logo-github" slot="icon-only"></ion-icon>
+    </ion-button>
+    <ion-button fill="clear" size="small" color="instagram">
+      <ion-icon name="logo-instagram" slot="icon-only"></ion-icon>
+    </ion-button>
+  </div>
 </ion-content>
